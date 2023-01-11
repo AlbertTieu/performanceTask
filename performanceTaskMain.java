@@ -1,18 +1,11 @@
 import java.util.Scanner;
+import java.util.InputMismatchException;
 
-/**
- * Write a description of class performanceTaskMain here.
- *
- * @author (your name)
- * @version (a version number or a date)
- */
 public class performanceTaskMain
 {
     Scanner scanner = new Scanner(System.in);
     String input = "";
-    int LOWER_BOUND = 8;
-    int UPPER_BOUND = 16;
-    int simSize = 16;
+    int simSize;
     boolean shouldContinue = true;
     boolean activeSim = false;
     int [][] sim;
@@ -34,6 +27,12 @@ public class performanceTaskMain
                 shouldContinue = false;
             }
             if (input.equals("N")) {
+                System.out.println("how big?");
+                try {
+                    simSize = scanner.nextInt();
+                } catch (InputMismatchException error) {
+                    System.out.println("please enter an integer between 8 - 16");
+                }
                 sim = createSimulation(simSize);
                 for (int a = 0;a < simSize;a++) {
                     for (int i = 0;i < simSize;i++) {
