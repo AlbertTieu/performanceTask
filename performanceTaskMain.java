@@ -12,7 +12,7 @@ public class performanceTaskMain
     String input = "";
     int LOWER_BOUND = 8;
     int UPPER_BOUND = 16;
-    int simSize;
+    int simSize = 16;
     boolean shouldContinue = true;
     boolean activeSim = false;
     int [][] sim;
@@ -35,6 +35,13 @@ public class performanceTaskMain
             }
             if (input.equals("N")) {
                 sim = createSimulation(simSize);
+                for (int a = 0;a < simSize;a++) {
+                    for (int i = 0;i < simSize;i++) {
+                        System.out.print(sim[i][a]);
+                        System.out.print(" ");
+                    }
+                    System.out.println();
+                }
                 activeSim = true;
             }
         }
@@ -45,14 +52,16 @@ public class performanceTaskMain
         conwayGame.runEventLoop();
     }
     
-    public int[][] createSimulation(int simSize) {
+    public int[][] createSimulation(int simulation_size) {
+        simSize = simulation_size;
         int[][] array2d = new int[simSize][simSize]; 
+        int status;
         for (int a = 0;a < simSize;a++) {
             for (int i = 0;i < simSize;i++) {
-                array2d[a][i] = 0;
+                status = (int)(Math.random() * 2);
+                array2d[i][a] = status;
             }
         }
         return array2d;
     }
-    
 }

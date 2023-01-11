@@ -7,6 +7,6 @@ comment2.params=
 comment2.target=void\ runEventLoop()
 comment3.params=args
 comment3.target=void\ main(java.lang.String[])
-comment4.params=simSize
+comment4.params=simulation_size
 comment4.target=int[][]\ createSimulation(int)
 numComments=5
