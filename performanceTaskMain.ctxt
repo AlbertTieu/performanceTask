@@ -1,0 +1,12 @@
+#BlueJ class context
+comment0.target=performanceTaskMain
+comment0.text=\n\ Write\ a\ description\ of\ class\ performanceTaskMain\ here.\n\n\ @author\ (your\ name)\n\ @version\ (a\ version\ number\ or\ a\ date)\n
+comment1.params=
+comment1.target=performanceTaskMain()
+comment2.params=
+comment2.target=void\ runEventLoop()
+comment3.params=args
+comment3.target=void\ main(java.lang.String[])
+comment4.params=simSize
+comment4.target=int[][]\ createSimulation(int)
+numComments=5
