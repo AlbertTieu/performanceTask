@@ -8,4 +8,6 @@ comment3.params=args
 comment3.target=void\ main(java.lang.String[])
 comment4.params=simulation_size
 comment4.target=int[][]\ createSimulation(int)
-numComments=5
+comment5.params=
+comment5.target=int[][]\ simNextGen()
+numComments=6
