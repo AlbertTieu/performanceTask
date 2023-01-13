@@ -6,10 +6,12 @@ public class performanceTaskMain
     Scanner scanner = new Scanner(System.in);
     String input = "";
     int simSize;
-    int LOWER_BOUND = 20;
-    int UPPER_BOUND = 40;
+    int LOWER_BOUND = 16;
+    int UPPER_BOUND = 30;
     boolean shouldContinue = true;
     boolean activeSim = false;
+    boolean errorSimSize = false;
+    boolean errorAuto = false;
     int [][] sim;
     public performanceTaskMain() {
         // :D
@@ -17,6 +19,13 @@ public class performanceTaskMain
     
     public void runEventLoop() {
         while (shouldContinue) {
+            System.out.print('\u000C');
+            if (errorAuto == true) {
+                
+            }
+            if () {
+                
+            }
             if (activeSim == false) {
                 System.out.println("Hi!");
             } else {
@@ -28,6 +37,7 @@ public class performanceTaskMain
                     System.out.println();
                 }
                 System.out.println("[Z] - advance simulation");
+                System.out.println("[A] - autoplay simulation");
             }
             System.out.println("[N] - new simulation");
             System.out.println("[C] - close program");
@@ -40,17 +50,44 @@ public class performanceTaskMain
                 try {
                     simSize = scanner.nextInt();
                     if (simSize < LOWER_BOUND || simSize > UPPER_BOUND) {
-                        System.out.println("please enter an integer between 8 - 16");
+                        System.out.println("please enter an integer between 16 - 30");
                     } else {
                         sim = createSimulation(simSize + 2);
                         activeSim = true;
                     }
                 } catch (InputMismatchException error) {
-                    System.out.println("please enter an integer between 8 - 16");
+                    System.out.println("please enter an integer between 16 - 30");
                 }
             }
+            
             if (input.equals("Z")) {
                 sim = simNextGen();
+            }
+            
+            if (input.equals ("A")) {
+                System.out.println("how many generations?");
+                int gens;
+                try {
+                    gens = scanner.nextInt();
+                    for (int i = 0;i < gens;i++) {
+                        System.out.print('\u000C');
+                        sim = simNextGen();
+                        for (int a = 0;a < simSize;a++) {
+                            for (int b = 0;b < simSize;b++) {
+                                System.out.print(sim[b][a]);
+                                System.out.print(" ");
+                            }
+                            System.out.println();
+                        }
+                        try {
+                            Thread.sleep(1000);
+                        } catch (InterruptedException ie) {
+                            ie.printStackTrace();
+                        }
+                    }
+                } catch (InputMismatchException error) {
+                    System.out.println("enter an integer");
+                }
             }
         }
     }
