@@ -12,6 +12,7 @@ public class performanceTaskMain
     boolean activeSim = false;
     boolean errorSimSize = false;
     boolean errorAuto = false;
+    boolean errorNoSim = false;
     int [][] sim;
     public performanceTaskMain() {
         // :D
@@ -20,18 +21,29 @@ public class performanceTaskMain
     public void runEventLoop() {
         while (shouldContinue) {
             System.out.print('\u000C');
+            input = "";
             if (errorAuto == true) {
-                
+                System.out.println("error: please enter integer");
+                errorAuto = false;
             }
-            if () {
-                
+            if (errorSimSize == true) {
+                System.out.println("error: please enter an integer between 16 - 30");
+                errorSimSize = false;
+            }
+            if (errorNoSim) {
+                System.out.println("error: no simulation running");
+                errorNoSim = false;
             }
             if (activeSim == false) {
                 System.out.println("Hi!");
             } else {
                 for (int a = 0;a < simSize;a++) {
                     for (int i = 0;i < simSize;i++) {
-                        System.out.print(sim[i][a]);
+                        if (sim[i][a] == 0) {
+                            System.out.print(" ");
+                        } else {
+                            System.out.print("/");
+                        }
                         System.out.print(" ");
                     }
                     System.out.println();
@@ -50,21 +62,24 @@ public class performanceTaskMain
                 try {
                     simSize = scanner.nextInt();
                     if (simSize < LOWER_BOUND || simSize > UPPER_BOUND) {
-                        System.out.println("please enter an integer between 16 - 30");
+                        errorSimSize = true;
+                        activeSim = false;
                     } else {
                         sim = createSimulation(simSize + 2);
                         activeSim = true;
                     }
                 } catch (InputMismatchException error) {
-                    System.out.println("please enter an integer between 16 - 30");
+                    errorSimSize = true;
                 }
             }
             
-            if (input.equals("Z")) {
+            if (input.equals("Z") && activeSim == true) {
                 sim = simNextGen();
+            } else if (input.equals ("Z") && activeSim == false) {
+                errorNoSim = true;
             }
             
-            if (input.equals ("A")) {
+            if (input.equals ("A") && activeSim == true) {
                 System.out.println("how many generations?");
                 int gens;
                 try {
@@ -74,7 +89,11 @@ public class performanceTaskMain
                         sim = simNextGen();
                         for (int a = 0;a < simSize;a++) {
                             for (int b = 0;b < simSize;b++) {
-                                System.out.print(sim[b][a]);
+                                if (sim[b][a] == 0) {
+                                    System.out.print(" ");
+                                } else {
+                                    System.out.print("/");
+                                }
                                 System.out.print(" ");
                             }
                             System.out.println();
@@ -86,8 +105,10 @@ public class performanceTaskMain
                         }
                     }
                 } catch (InputMismatchException error) {
-                    System.out.println("enter an integer");
+                    errorAuto = true;
                 }
+            } else if (input.equals ("A") && activeSim == false) {
+                errorNoSim = true;
             }
         }
     }
