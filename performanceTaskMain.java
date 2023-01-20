@@ -7,12 +7,14 @@ public class performanceTaskMain
     String input = "";
     int simSize;
     int LOWER_BOUND = 16;
-    int UPPER_BOUND = 30;
+    int UPPER_BOUND = 35;
+    int time = 1000;
     boolean shouldContinue = true;
     boolean activeSim = false;
     boolean errorSimSize = false;
     boolean errorAuto = false;
     boolean errorNoSim = false;
+    boolean successMsg = false;
     int [][] sim;
     public performanceTaskMain() {
         // :D
@@ -27,13 +29,18 @@ public class performanceTaskMain
                 errorAuto = false;
             }
             if (errorSimSize == true) {
-                System.out.println("error: please enter an integer between 16 - 30");
+                System.out.println("error: please enter an integer between 16 - 35");
                 errorSimSize = false;
             }
             if (errorNoSim) {
-                System.out.println("error: no simulation running");
                 errorNoSim = false;
             }
+            
+            if (successMsg) {
+                System.out.println("interval set successfully");
+                successMsg = false;
+            }
+            
             if (activeSim == false) {
                 System.out.println("Hi!");
             } else {
@@ -53,17 +60,38 @@ public class performanceTaskMain
             }
             System.out.println("[N] - new simulation");
             System.out.println("[C] - close program");
+            System.out.println("[O] - options");
             input = scanner.next();
+            
+            if (input.equals("O")) {
+                System.out.println("[A] - auto interval");
+                input = scanner.next();
+                if (input.equals("A")) {
+                    try {
+                        System.out.println("current interval - " + time + " ms");
+                        System.out.println("input interval (ms)");
+                        time = scanner.nextInt();
+                        successMsg = true;
+                    } catch (InputMismatchException error) {
+                        errorAuto = true;
+                    }
+                }
+                input = "";
+            }
+            
             if (input.equals("C")) {
+                System.out.print('\u000C');
                 shouldContinue = false;
             }
+            
             if (input.equals("N")) {
                 System.out.println("how big?");
                 try {
+                    int saveSize = simSize;
                     simSize = scanner.nextInt();
                     if (simSize < LOWER_BOUND || simSize > UPPER_BOUND) {
                         errorSimSize = true;
-                        activeSim = false;
+                        simSize = saveSize;
                     } else {
                         sim = createSimulation(simSize + 2);
                         activeSim = true;
@@ -71,15 +99,19 @@ public class performanceTaskMain
                 } catch (InputMismatchException error) {
                     errorSimSize = true;
                 }
+                input = "";
             }
             
             if (input.equals("Z") && activeSim == true) {
                 sim = simNextGen();
+                input = "";
             } else if (input.equals ("Z") && activeSim == false) {
                 errorNoSim = true;
+                input = "";
             }
             
             if (input.equals ("A") && activeSim == true) {
+                System.out.println("interval - " + time + " ms");
                 System.out.println("how many generations?");
                 int gens;
                 try {
@@ -99,7 +131,7 @@ public class performanceTaskMain
                             System.out.println();
                         }
                         try {
-                            Thread.sleep(1000);
+                            Thread.sleep(time);
                         } catch (InterruptedException ie) {
                             ie.printStackTrace();
                         }
