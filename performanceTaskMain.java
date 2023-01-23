@@ -187,4 +187,8 @@ public class performanceTaskMain
         }
         return array2d;
     }
+    
+    public void printSim() {
+        //this is the method for printing the conway simulation game itself
+    }
 }

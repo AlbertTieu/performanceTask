@@ -10,4 +10,6 @@ comment4.params=simulation_size
 comment4.target=int[][]\ createSimulation(int)
 comment5.params=
 comment5.target=int[][]\ simNextGen()
-numComments=6
+comment6.params=
+comment6.target=void\ printSim()
+numComments=7
