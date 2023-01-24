@@ -44,17 +44,7 @@ public class performanceTaskMain
             if (activeSim == false) {
                 System.out.println("Hi!");
             } else {
-                for (int a = 0;a < simSize;a++) {
-                    for (int i = 0;i < simSize;i++) {
-                        if (sim[i][a] == 0) {
-                            System.out.print(" ");
-                        } else {
-                            System.out.print("/");
-                        }
-                        System.out.print(" ");
-                    }
-                    System.out.println();
-                }
+                printSim();
                 System.out.println("[Z] - advance simulation");
                 System.out.println("[A] - autoplay simulation");
             }
@@ -116,20 +106,10 @@ public class performanceTaskMain
                 int gens;
                 try {
                     gens = scanner.nextInt();
-                    for (int i = 0;i < gens;i++) {
+                    for (int b = 0;b < gens;b++) {
                         System.out.print('\u000C');
                         sim = simNextGen();
-                        for (int a = 0;a < simSize;a++) {
-                            for (int b = 0;b < simSize;b++) {
-                                if (sim[b][a] == 0) {
-                                    System.out.print(" ");
-                                } else {
-                                    System.out.print("/");
-                                }
-                                System.out.print(" ");
-                            }
-                            System.out.println();
-                        }
+                        printSim();
                         try {
                             Thread.sleep(time);
                         } catch (InterruptedException ie) {
@@ -190,5 +170,16 @@ public class performanceTaskMain
     
     public void printSim() {
         //this is the method for printing the conway simulation game itself
+        for (int a = 0;a < simSize;a++) {
+            for (int i = 0;i < simSize;i++) {
+                if (sim[i][a] == 0) {
+                    System.out.print(" ");
+                } else {
+                    System.out.print("/");
+                }
+                System.out.print(" ");
+            }
+            System.out.println();
+        }
     }
 }
