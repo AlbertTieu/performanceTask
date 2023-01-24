@@ -1,8 +1,7 @@
 import java.util.Scanner;
 import java.util.InputMismatchException;
 
-public class performanceTaskMain
-{
+public class performanceTaskMain {
     Scanner scanner = new Scanner(System.in);
     String input = "";
     int simSize;
@@ -67,6 +66,7 @@ public class performanceTaskMain
                     }
                 }
                 input = "";
+                scanner.nextLine();
             }
             
             if (input.equals("C")) {
@@ -90,14 +90,17 @@ public class performanceTaskMain
                     errorSimSize = true;
                 }
                 input = "";
+                scanner.nextLine();
             }
             
             if (input.equals("Z") && activeSim == true) {
                 sim = simNextGen();
                 input = "";
+                scanner.nextLine();
             } else if (input.equals ("Z") && activeSim == false) {
                 errorNoSim = true;
                 input = "";
+                scanner.nextLine();
             }
             
             if (input.equals ("A") && activeSim == true) {
@@ -118,9 +121,11 @@ public class performanceTaskMain
                     }
                 } catch (InputMismatchException error) {
                     errorAuto = true;
+                    scanner.nextLine();
                 }
             } else if (input.equals ("A") && activeSim == false) {
                 errorNoSim = true;
+                scanner.nextLine();
             }
         }
     }
@@ -175,7 +180,7 @@ public class performanceTaskMain
                 if (sim[i][a] == 0) {
                     System.out.print(" ");
                 } else {
-                    System.out.print("/");
+                    System.out.print("X");
                 }
                 System.out.print(" ");
             }
