@@ -12,7 +12,6 @@ public class performanceTaskMain {
     boolean activeSim = false;
     boolean errorSimSize = false;
     boolean errorAuto = false;
-    boolean errorNoSim = false;
     boolean successMsg = false;
     int [][] sim;
     public performanceTaskMain() {
@@ -30,9 +29,6 @@ public class performanceTaskMain {
             if (errorSimSize == true) {
                 System.out.println("error: please enter an integer between 16 - 35");
                 errorSimSize = false;
-            }
-            if (errorNoSim) {
-                errorNoSim = false;
             }
             
             if (successMsg) {
@@ -98,7 +94,6 @@ public class performanceTaskMain {
                 input = "";
                 scanner.nextLine();
             } else if (input.equals ("Z") && activeSim == false) {
-                errorNoSim = true;
                 input = "";
                 scanner.nextLine();
             }
@@ -124,7 +119,6 @@ public class performanceTaskMain {
                     scanner.nextLine();
                 }
             } else if (input.equals ("A") && activeSim == false) {
-                errorNoSim = true;
                 scanner.nextLine();
             }
         }
