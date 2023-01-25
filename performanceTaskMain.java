@@ -8,6 +8,7 @@ public class performanceTaskMain {
     int LOWER_BOUND = 16;
     int UPPER_BOUND = 35;
     int time = 1000;
+    int genNum = 0;
     boolean shouldContinue = true;
     boolean activeSim = false;
     boolean errorSimSize = false;
@@ -27,7 +28,7 @@ public class performanceTaskMain {
                 errorAuto = false;
             }
             if (errorSimSize == true) {
-                System.out.println("error: please enter an integer between 16 - 35");
+                System.out.println("error: please enter an integer between " + LOWER_BOUND + " - " + UPPER_BOUND);
                 errorSimSize = false;
             }
             
@@ -71,7 +72,7 @@ public class performanceTaskMain {
             }
             
             if (input.equals("N")) {
-                System.out.println("how big?");
+                System.out.println("how big? " + "(" + LOWER_BOUND + " - " + UPPER_BOUND + ")");
                 try {
                     int saveSize = simSize;
                     simSize = scanner.nextInt();
@@ -86,12 +87,14 @@ public class performanceTaskMain {
                     errorSimSize = true;
                 }
                 input = "";
+                genNum = 0;
                 scanner.nextLine();
             }
             
             if (input.equals("Z") && activeSim == true) {
                 sim = simNextGen();
                 input = "";
+                genNum++;
                 scanner.nextLine();
             } else if (input.equals ("Z") && activeSim == false) {
                 input = "";
@@ -107,6 +110,7 @@ public class performanceTaskMain {
                     for (int b = 0;b < gens;b++) {
                         System.out.print('\u000C');
                         sim = simNextGen();
+                        genNum++;
                         printSim();
                         try {
                             Thread.sleep(time);
@@ -180,5 +184,7 @@ public class performanceTaskMain {
             }
             System.out.println();
         }
+        System.out.print("generation " +genNum);
+        System.out.println();
     }
 }
