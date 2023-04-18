@@ -80,11 +80,12 @@ public class performanceTaskMain {
                         errorSimSize = true;
                         simSize = saveSize;
                     } else {
-                        int[][] array2d = new int[simSize+2][simSize+2]; 
+                        int modSize = simSize+2;
+                        int[][] array2d = new int[modSize][modSize]; 
                         int status;
-                        for (int a = 0;a < simSize;a++) {
-                            for (int i = 0;i < simSize;i++) {
-                                if (i == 0 || a == 0 || i == simSize -1 || a == simSize -1) {
+                        for (int a = 0;a < modSize;a++) {
+                            for (int i = 0;i < modSize;i++) {
+                                if (i == 0 || a == 0 || i == modSize -1 || a == modSize -1) {
                                     array2d[i][a] = 0;
                                 } else {
                                     status = (int)(Math.random() * 2);
@@ -163,11 +164,11 @@ public class performanceTaskMain {
     }
     
     public int[][] simNextGen() {
-        int[][] array2d = new int[simSize][simSize];
+        int[][] array2d = new int[simSize + 2][simSize +2];
         int status;
         int adjLiving;
-        for (int a = 1;a < simSize - 1;a++) {
-            for (int i = 1;i < simSize - 1;i++) {
+        for (int a = 1;a < simSize +1;a++) {
+            for (int i = 1;i < simSize +1;i++) {
                 adjLiving = sim[i-1][a-1] + sim[i-1][a] + sim[i-1][a+1] + sim[i][a+1] + sim[i][a-1] + sim[i+1][a-1] + sim[i+1][a] + sim[i+1][a+1];
                 if (sim[i][a] == 0) {
                     if (adjLiving == 3) {
@@ -185,8 +186,8 @@ public class performanceTaskMain {
     
     public void printSim() {
         //this is the method for printing the conway simulation game itself
-        for (int a = 0;a < simSize;a++) {
-            for (int i = 0;i < simSize;i++) {
+        for (int a = 0;a < simSize +2;a++) {
+            for (int i = 0;i < simSize+2;i++) {
                 if (sim[i][a] == 0) {
                     System.out.print(" ");
                 } else {
