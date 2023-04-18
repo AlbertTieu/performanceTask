@@ -80,7 +80,19 @@ public class performanceTaskMain {
                         errorSimSize = true;
                         simSize = saveSize;
                     } else {
-                        sim = createSimulation(simSize + 2);
+                        int[][] array2d = new int[simSize+2][simSize+2]; 
+                        int status;
+                        for (int a = 0;a < simSize;a++) {
+                            for (int i = 0;i < simSize;i++) {
+                                if (i == 0 || a == 0 || i == simSize -1 || a == simSize -1) {
+                                    array2d[i][a] = 0;
+                                } else {
+                                    status = (int)(Math.random() * 2);
+                                    array2d[i][a] = status;
+                                }
+                            }
+                        }
+                        sim = array2d;
                         activeSim = true;
                     }
                 } catch (InputMismatchException error) {
@@ -133,21 +145,21 @@ public class performanceTaskMain {
         conwayGame.runEventLoop();
     }
     
-    public int[][] createSimulation(int simulation_size) {
-        simSize = simulation_size;
-        int[][] array2d = new int[simSize][simSize]; 
-        int status;
-        for (int a = 0;a < simSize;a++) {
-            for (int i = 0;i < simSize;i++) {
-                if (i == 0 || a == 0 || i == simSize -1 || a == simSize -1) {
-                    array2d[i][a] = 0;
-                } else {
-                    status = (int)(Math.random() * 2);
-                    array2d[i][a] = status;
-                }
-            }
-        }
-        return array2d;
+    public void createSimulation(int simulation_size) {
+        //simSize = simulation_size;
+        //int[][] array2d = new int[simSize+2][simSize+2]; 
+        //int status;
+        //for (int a = 0;a < simSize;a++) {
+        //    for (int i = 0;i < simSize;i++) {
+        //        if (i == 0 || a == 0 || i == simSize -1 || a == simSize -1) {
+        //            array2d[i][a] = 0;
+        //        } else {
+        //            status = (int)(Math.random() * 2);
+        //            array2d[i][a] = status;
+        //        }
+        //    }
+        //}
+        //return array2d;
     }
     
     public int[][] simNextGen() {
