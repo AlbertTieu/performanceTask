@@ -32,11 +32,6 @@ public class performanceTaskMain {
                 errorSimSize = false;
             }
             
-            if (successMsg) {
-                System.out.println("interval set successfully");
-                successMsg = false;
-            }
-            
             if (activeSim == false) {
                 System.out.println("Hi!");
             } else {
@@ -46,25 +41,7 @@ public class performanceTaskMain {
             }
             System.out.println("[N] - new simulation");
             System.out.println("[C] - close program");
-            System.out.println("[O] - options");
             input = scanner.next();
-            
-            if (input.equals("O")) {
-                System.out.println("[A] - auto interval");
-                input = scanner.next();
-                if (input.equals("A")) {
-                    try {
-                        System.out.println("current interval - " + time + " ms");
-                        System.out.println("input interval (ms)");
-                        time = scanner.nextInt();
-                        successMsg = true;
-                    } catch (InputMismatchException error) {
-                        errorAuto = true;
-                    }
-                }
-                input = "";
-                scanner.nextLine();
-            }
             
             if (input.equals("C")) {
                 System.out.print('\u000C');
@@ -115,25 +92,32 @@ public class performanceTaskMain {
             }
             
             if (input.equals ("A") && activeSim == true) {
-                System.out.println("interval - " + time + " ms");
-                System.out.println("how many generations?");
-                int gens;
+                System.out.println("define an interval (ms)");
                 try {
-                    gens = scanner.nextInt();
-                    for (int b = 0;b < gens;b++) {
-                        System.out.print('\u000C');
-                        sim = simNextGen();
-                        genNum++;
-                        printSim();
-                        try {
-                            Thread.sleep(time);
-                        } catch (InterruptedException ie) {
-                            ie.printStackTrace();
-                        }
-                    }
+                    time = scanner.nextInt();
                 } catch (InputMismatchException error) {
                     errorAuto = true;
-                    scanner.nextLine();
+                }
+                System.out.println("how many generations?");
+                if (errorAuto != true) {
+                    int gens;
+                    try {
+                        gens = scanner.nextInt();
+                        for (int b = 0;b < gens;b++) {
+                            System.out.print('\u000C');
+                            sim = simNextGen();
+                            genNum++;
+                            printSim();
+                            try {
+                                Thread.sleep(time);
+                            } catch (InterruptedException ie) {
+                                ie.printStackTrace();
+                            }
+                        }
+                    } catch (InputMismatchException error) {
+                        errorAuto = true;
+                        scanner.nextLine();
+                    }
                 }
             } else if (input.equals ("A") && activeSim == false) {
                 scanner.nextLine();
