@@ -15,6 +15,7 @@ public class performanceTaskMain {
     boolean errorAuto = false;
     boolean successMsg = false;
     int [][] sim;
+    int [][] lastGen;
     public performanceTaskMain() {
         // :D
     }
@@ -37,6 +38,7 @@ public class performanceTaskMain {
             } else {
                 printSim();
                 System.out.println("[Z] - advance simulation");
+                System.out.println("[X] - undo simulation");
                 System.out.println("[A] - autoplay simulation");
             }
             System.out.println("[N] - new simulation");
@@ -82,6 +84,7 @@ public class performanceTaskMain {
             }
             
             if (input.equals("Z") && activeSim == true) {
+                
                 sim = simNextGen();
                 input = "";
                 genNum++;
@@ -89,6 +92,9 @@ public class performanceTaskMain {
             } else if (input.equals ("Z") && activeSim == false) {
                 input = "";
                 scanner.nextLine();
+            }
+            if (input.equals("U") && activeSim == true && genNum > 0) {
+                
             }
             
             if (input.equals ("A") && activeSim == true) {
