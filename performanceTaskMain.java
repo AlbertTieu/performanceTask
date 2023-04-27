@@ -82,26 +82,29 @@ public class performanceTaskMain {
                         sim = array2d;
                         activeSim = true;
                         activeCusSim = false;
+                        genNum = 0;
+                        genHist.clear();
                     }
                 } catch (InputMismatchException error) {
                     errorSimSize = true;
                 }
                 input = "";
-                genNum = 0;
                 scanner.nextLine();
             }
             if (input.equals("M")) {
-                System.out.println("enter width:");
+                System.out.println("enter height:");
                 try {
                     w = scanner.nextInt();
                 } catch (InputMismatchException error) {
                     errorInt = true;
                 }
                 if (errorInt != true) {
-                    System.out.println("enter length:");
+                    System.out.println("enter width:");
                     try {
                         h = scanner.nextInt();
                         createCustomSimulation(h,w);
+                        genNum = 0;
+                        genHist.clear();
                     } catch (InputMismatchException error) {
                         errorInt = true;
                     }
